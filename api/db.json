@@ -1,0 +1,27 @@
+{
+  "products": [
+    {
+      "id": 0,
+      "idCategory": 0,
+      "name": "Coca-cola lata 350ml",
+      "price": 3.5
+    },
+    {
+      "id": 1,
+      "idCategory": 0,
+      "name": "Fanta uva lata 350ml",
+      "price": 3.5
+    },
+    {
+      "id": 2,
+      "idCategory": 0,
+      "name": "Sprite lata 350ml",
+      "price": 3.5
+    },
+    {
+      "name": "Guaraná lata 350ml",
+      "price": "3",
+      "id": 3
+    }
+  ]
+}

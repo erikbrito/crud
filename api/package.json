@@ -1,0 +1,14 @@
+{
+  "name": "db_products",
+  "version": "1.0.0",
+  "description": "Fake json REST API",
+  "main": "index.js",
+  "scripts": {
+    "json:server": "json-server -p 4000 db.json"
+  },
+  "author": "Zerik",
+  "license": "ISC",
+  "dependencies": {
+    "json-server": "^0.16.3"
+  }
+}
