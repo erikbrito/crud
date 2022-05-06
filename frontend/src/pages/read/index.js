@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Table, Button } from 'semantic-ui-react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
 const Read = () => {
+  let history = useHistory()
+
   const [products, setProducts] = useState([])
 
+  //READ
   useEffect(() => {
     axios.get(`http://localhost:4000/products`)
       .then((response) => {
@@ -15,12 +19,14 @@ const Read = () => {
     })
   }, [])
 
-  const setData = (id, name, price) => {
-    localStorage.setItem('id', id)
-    localStorage.setItem('name', name)
-    localStorage.setItem('price', price)
+  const toUpdate = (id, name, price) => {
+    history.push({
+      pathname: '/update', 
+      state: { id: id, name: name, price: price },
+    })
   }
 
+  //PARA ATUALIZAR A PÁGINA APÓS SER FEITO O DELETE
   const getData = () => {
     axios.get(`http://localhost:4000/products`)
       .then((response) => {
@@ -28,6 +34,7 @@ const Read = () => {
     })
   }
 
+  //DELETE
   const onDelete = (id) => {
     axios.delete(`http://localhost:4000/products/${id}`)
     .then(() => {
@@ -54,16 +61,14 @@ const Read = () => {
                           <Table.Cell>{data.name}</Table.Cell>
                           <Table.Cell>{data.price}</Table.Cell>
                           <Table.Cell>
-                              <Link to='/update'>
-                                  <Button
-                                    color="blue"
-                                    onClick={() => setData(data.id, data.name, data.price)}>
-                                    Update
-                                  </Button>
-                              </Link>
+                            <Button
+                              color="blue"
+                              onClick={() => toUpdate(data.id, data.name, data.price)}>
+                              Update
+                            </Button>
                           </Table.Cell>
                           <Table.Cell>
-                              <Button color="red" onClick={() => onDelete(data.id)}>Delete</Button>
+                            <Button color="red" onClick={() => onDelete(data.id)}>Delete</Button>
                           </Table.Cell>
                       </Table.Row>
                     )

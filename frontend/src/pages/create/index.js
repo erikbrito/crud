@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'semantic-ui-react'
 import axios from 'axios'
-import { useHistory } from 'react-router'
+import { useHistory } from 'react-router-dom'
 
 import './styles.css'
 
 const Create = () => {
   let history = useHistory()
+
   const [name, setName] = useState('')
   const [price, setPrice] = useState('')
 
-  const create = () => {
-    axios.post(`http://localhost:4000/products`, {
-      name,
-      price
-    }).then(() => {
-      history.push('/')
-    })
+  //CREATE
+  const onCreate = () => {
+    axios.post(`http://localhost:4000/products`, { name, price })
+      .then(() => {
+        history.push('/')
+      }
+    )
   }
 
   return (
@@ -40,7 +41,7 @@ const Create = () => {
           />
         </Form.Field>
         
-        <Button type='submit' onClick={create}>Create</Button>
+        <Button type='submit' onClick={onCreate}>Create</Button>
       </Form>
     </div>
   )
